@@ -98,3 +98,24 @@ footer{min-height:900px;padding:120px 7vw 28px;position:relative;overflow:hidden
   .hud-left{left:16px}
   .hud-right{right:16px;bottom:18px}
 }
+
+/* Interactive Smart Link product gallery */
+.screen-progress{height:2px;overflow:hidden;background:#dfe5df}.screen-progress i{display:block;height:100%;background:var(--green);transition:width .55s cubic-bezier(.2,.7,.2,1)}
+.screen-viewport{position:relative;touch-action:pan-y}.screen-image-button{width:100%;height:100%;padding:0;display:block;border:0;background:#101511;cursor:zoom-in}.screen-image-button img{pointer-events:none}.screen-image.screen-next{animation:screenSlideNext .55s cubic-bezier(.2,.7,.2,1) both}.screen-image.screen-prev{animation:screenSlidePrev .55s cubic-bezier(.2,.7,.2,1) both}
+.screen-hotspots{position:absolute;inset:0;pointer-events:none}.screen-hotspots>button{position:absolute;width:18px;height:18px;padding:0;border:0;border-radius:50%;background:#fff;box-shadow:0 0 0 1px #68b938,0 0 0 7px #68b93824,0 5px 16px #15251a55;transform:translate(-50%,-50%);pointer-events:auto;cursor:zoom-in;animation:hotspotPulse 2.4s ease-in-out infinite}.screen-hotspots>button:nth-child(2){animation-delay:.7s}.screen-hotspots i{position:absolute;inset:6px;border-radius:50%;background:var(--green)}.screen-hotspots span{position:absolute;left:26px;top:50%;width:max-content;padding:7px 9px;color:#eef5ef;border:1px solid #ffffff20;border-radius:2px;background:#17221dcc;backdrop-filter:blur(8px);font:500 7px 'DM Mono';letter-spacing:.04em;transform:translateY(-50%);opacity:0;transition:.25s;pointer-events:none}.screen-hotspots button:hover span,.screen-hotspots button:focus-visible span{opacity:1}.screen-hotspots.screen-next{animation:hotspotsNext .65s .12s both}.screen-hotspots.screen-prev{animation:hotspotsPrev .65s .12s both}.swipe-hint{display:none}
+.screen-caption{min-height:68px}.screen-lightbox{position:fixed;z-index:100;inset:0;padding:28px;display:grid;place-items:center;background:#0b110edf;backdrop-filter:blur(18px);animation:lightboxIn .3s ease both}.screen-lightbox>div{width:min(1500px,96vw);overflow:hidden;border:1px solid #435048;background:#111a15;box-shadow:0 35px 100px #000a}.screen-lightbox header,.screen-lightbox nav{height:52px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;color:#91a097;font:400 8px 'DM Mono';letter-spacing:.08em}.screen-lightbox header{border-bottom:1px solid #303c35}.screen-lightbox header button{width:32px;height:32px;color:#dbe5de;border:1px solid #455149;border-radius:50%;background:transparent;font-size:20px;cursor:pointer}.screen-lightbox img{display:block;width:100%;max-height:78vh;object-fit:contain;background:#0a0e0c}.screen-lightbox nav{border-top:1px solid #303c35}.screen-lightbox nav button{width:36px;height:32px;color:#dbe5de;border:1px solid #3b4941;background:transparent;cursor:pointer}.screen-lightbox nav strong{color:#cbd6cf;font-weight:500}
+@keyframes screenSlideNext{from{opacity:.25;transform:translateX(24px) scale(1.012);filter:blur(3px)}to{opacity:1;transform:none;filter:none}}@keyframes screenSlidePrev{from{opacity:.25;transform:translateX(-24px) scale(1.012);filter:blur(3px)}to{opacity:1;transform:none;filter:none}}@keyframes hotspotsNext{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}@keyframes hotspotsPrev{from{opacity:0;transform:translateX(-16px)}to{opacity:1;transform:none}}@keyframes hotspotPulse{0%,100%{box-shadow:0 0 0 1px #68b938,0 0 0 5px #68b9381d,0 5px 16px #15251a55}50%{box-shadow:0 0 0 1px #68b938,0 0 0 10px #68b93808,0 5px 16px #15251a55}}@keyframes lightboxIn{from{opacity:0}to{opacity:1}}
+
+@media(max-width:720px){
+  .screen-caption{min-height:88px}
+  .screen-hotspots>button{width:14px;height:14px;box-shadow:0 0 0 1px #68b938,0 0 0 5px #68b93820}
+  .screen-hotspots i{inset:5px}
+  .screen-hotspots span{display:none}
+  .swipe-hint{display:block;position:absolute;right:8px;bottom:7px;padding:5px 7px;color:#dce6df;background:#17221cbf;font:400 5px 'DM Mono';letter-spacing:.08em;pointer-events:none}
+  .screen-lightbox{padding:12px}
+  .screen-lightbox>div{width:100%}
+  .screen-lightbox header,.screen-lightbox nav{height:46px;padding:0 12px}
+  .screen-lightbox header span{max-width:75%;line-height:1.4}
+}
+
+@media(prefers-reduced-motion:reduce){.screen-image,.screen-hotspots,.screen-lightbox{animation:none!important}.screen-progress i{transition:none}}

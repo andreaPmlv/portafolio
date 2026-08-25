@@ -4,11 +4,11 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import markLogo from './logo.png'
 import fullLogo from './logo-smartlink-cuadrado.jpg'
-import homeScreen from './smartlink-home.png'
-import sensorsScreen from './smartlink-sensors.png'
-import wellsScreen from './smartlink-wells.png'
-import faultsScreen from './smartlink-faults.png'
-import simulatorScreen from './smartlink-simulator.png'
+import homeScreen from './smartlink-home.webp'
+import sensorsScreen from './smartlink-sensors.webp'
+import wellsScreen from './smartlink-wells.webp'
+import faultsScreen from './smartlink-faults.webp'
+import simulatorScreen from './smartlink-simulator.webp'
 import './App.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -20,11 +20,11 @@ const features = [
   ['03', 'Control y respuesta', 'Genera alarmas, conserva el historial y permite encender, apagar o ajustar la velocidad del equipo desde un mismo entorno.'],
 ]
 const productScreens = [
-  { label: 'Inicio', kicker: 'Visión general', description: 'Producción, estado del campo e indicadores operativos disponibles desde el acceso principal.', image: homeScreen },
-  { label: 'Sensores', kicker: 'Telemetría del pozo', description: 'Variables del pozo y carta dinagráfica recibidas por Smart Link en una vista sincronizada.', image: sensorsScreen },
-  { label: 'Pozos', kicker: 'Gestión de activos', description: 'Inventario de pozos, producción, ubicación y acceso directo al detalle de sus sensores.', image: wellsScreen },
-  { label: 'Diagnóstico', kicker: 'Catálogo de fallas', description: 'Firmas dinagráficas documentadas para identificar condiciones y emitir alarmas accionables.', image: faultsScreen },
-  { label: 'Ground truth', kicker: 'Simulador de campo', description: 'Gemelos digitales para reproducir fallas, validar respuestas y contrastar superficie contra fondo.', image: simulatorScreen },
+  { label: 'Inicio', kicker: 'Visión general', description: 'Producción, estado del campo e indicadores operativos disponibles desde el acceso principal.', image: homeScreen, hotspots: [[54, 28, 'Estado del campo'], [78, 73, 'Producción en vivo']] },
+  { label: 'Sensores', kicker: 'Telemetría del pozo', description: 'Variables del pozo y carta dinagráfica recibidas por Smart Link en una vista sincronizada.', image: sensorsScreen, hotspots: [[69, 30, 'Lectura de sensores'], [63, 72, 'Carta recibida']] },
+  { label: 'Pozos', kicker: 'Gestión de activos', description: 'Inventario de pozos, producción, ubicación y acceso directo al detalle de sus sensores.', image: wellsScreen, hotspots: [[42, 37, 'Estado operativo'], [75, 62, 'Acceso al pozo']] },
+  { label: 'Diagnóstico', kicker: 'Catálogo de fallas', description: 'Firmas dinagráficas documentadas para identificar condiciones y emitir alarmas accionables.', image: faultsScreen, hotspots: [[44, 32, 'Firma dinagráfica'], [72, 65, 'Falla identificada']] },
+  { label: 'Ground truth', kicker: 'Simulador de campo', description: 'Gemelos digitales para reproducir fallas, validar respuestas y contrastar superficie contra fondo.', image: simulatorScreen, hotspots: [[39, 33, 'Variables simuladas'], [72, 69, 'Ground truth']] },
 ]
 const brochurePages = [
   ['CONNECTED OILFIELD', 'Control que llega más profundo.'],
@@ -45,11 +45,14 @@ const brochurePages = [
 function App() {
   const [page, setPage] = useState(1)
   const [activeScreen, setActiveScreen] = useState(0)
+  const [screenDirection, setScreenDirection] = useState<'next' | 'prev'>('next')
+  const [screenExpanded, setScreenExpanded] = useState(false)
   const [bookPaused, setBookPaused] = useState(false)
   const [bookHover, setBookHover] = useState(false)
   const [bookInView, setBookInView] = useState(false)
   const [bookDirection, setBookDirection] = useState<'next' | 'prev'>('next')
   const brochureRef = useRef<HTMLElement>(null)
+  const swipeStart = useRef<number | null>(null)
   useEffect(() => {
     const lenis = new Lenis({ duration: 1.15, smoothWheel: true })
     const syncScroll = () => ScrollTrigger.update()
@@ -80,6 +83,29 @@ function App() {
     }, 4200)
     return () => window.clearInterval(timer)
   }, [bookPaused, bookHover, bookInView])
+
+  useEffect(() => {
+    if (!screenExpanded) return
+    const previousOverflow = document.body.style.overflow
+    const closeOnEscape = (event: KeyboardEvent) => { if (event.key === 'Escape') setScreenExpanded(false) }
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', closeOnEscape)
+    return () => { document.body.style.overflow = previousOverflow; window.removeEventListener('keydown', closeOnEscape) }
+  }, [screenExpanded])
+
+  const changeScreen = (nextScreen: number, direction?: 'next' | 'prev') => {
+    const normalized = (nextScreen + productScreens.length) % productScreens.length
+    setScreenDirection(direction ?? (normalized < activeScreen ? 'prev' : 'next'))
+    setActiveScreen(normalized)
+  }
+
+  const finishSwipe = (clientX: number) => {
+    if (swipeStart.current === null) return
+    const distance = clientX - swipeStart.current
+    swipeStart.current = null
+    if (Math.abs(distance) < 45) return
+    changeScreen(activeScreen + (distance < 0 ? 1 : -1), distance < 0 ? 'next' : 'prev')
+  }
 
   const changePage = (nextPage: number) => {
     const normalized = Math.min(brochurePages.length, Math.max(1, nextPage))
@@ -125,11 +151,14 @@ function App() {
     <section className="platform-section" id="platform">
       <div className="platform-heading" data-reveal><div><p className="eyebrow">03 / SUPERVISIÓN Y CONTROL</p><h2>Todo el campo.<br /><em>Una interfaz.</em></h2></div><p>Desde Smart Link se consultan los pozos y sus sensores, se reciben alarmas, se revisa el historial y se envían comandos de encendido, apagado y velocidad al equipo.</p></div>
       <div className="product-stage" data-reveal>
-        <div className="screen-tabs" role="tablist" aria-label="Vistas de Smart Link Control">{productScreens.map((screen, index) => <button key={screen.label} className={index === activeScreen ? 'active' : ''} onClick={() => setActiveScreen(index)} role="tab" aria-selected={index === activeScreen}><small>0{index + 1}</small><span>{screen.label}</span></button>)}</div>
-        <div className="screen-window"><div className="browser-bar"><i/><i/><i/><span>smartlink.lift.energy / {productScreens[activeScreen].label.toLowerCase()}</span><b>LIVE</b></div><div className="screen-viewport"><img key={productScreens[activeScreen].image} src={productScreens[activeScreen].image} alt={`Smart Link Control — ${productScreens[activeScreen].kicker}`} /></div></div>
+        <div className="screen-tabs" role="tablist" aria-label="Vistas de Smart Link Control">{productScreens.map((screen, index) => <button key={screen.label} className={index === activeScreen ? 'active' : ''} onClick={() => changeScreen(index)} role="tab" aria-selected={index === activeScreen}><small>0{index + 1}</small><span>{screen.label}</span></button>)}</div>
+        <div className="screen-progress" aria-hidden="true"><i style={{ width: `${((activeScreen + 1) / productScreens.length) * 100}%` }} /></div>
+        <div className="screen-window" onPointerDown={(event) => { if (event.pointerType === 'touch') swipeStart.current = event.clientX }} onPointerUp={(event) => { if (event.pointerType === 'touch') finishSwipe(event.clientX) }} onPointerCancel={() => { swipeStart.current = null }}><div className="browser-bar"><i/><i/><i/><span>smartlink.lift.energy / {productScreens[activeScreen].label.toLowerCase()}</span><b>LIVE</b></div><div className="screen-viewport"><button className="screen-image-button" onClick={() => setScreenExpanded(true)} aria-label={`Ampliar vista ${productScreens[activeScreen].label}`}><img className={`screen-image screen-${screenDirection}`} key={productScreens[activeScreen].image} src={productScreens[activeScreen].image} alt={`Smart Link Control — ${productScreens[activeScreen].kicker}`} /></button><div className={`screen-hotspots screen-${screenDirection}`} key={`hotspots-${activeScreen}`}>{productScreens[activeScreen].hotspots.map(([x, y, label]) => <button key={label} style={{ left: `${x}%`, top: `${y}%` }} onClick={() => setScreenExpanded(true)} aria-label={`${label}. Ampliar imagen`}><i /><span>{label}</span></button>)}</div><span className="swipe-hint">DESLIZA PARA EXPLORAR</span></div></div>
         <div className="screen-caption"><span>{productScreens[activeScreen].kicker}</span><p>{productScreens[activeScreen].description}</p><b>{String(activeScreen + 1).padStart(2, '0')} / {String(productScreens.length).padStart(2, '0')}</b></div>
       </div>
     </section>
+
+    {screenExpanded && <div className="screen-lightbox" role="dialog" aria-modal="true" aria-label={`Vista ampliada de ${productScreens[activeScreen].label}`} onClick={() => setScreenExpanded(false)}><div onClick={(event) => event.stopPropagation()}><header><span>{String(activeScreen + 1).padStart(2, '0')} / {String(productScreens.length).padStart(2, '0')} · {productScreens[activeScreen].kicker}</span><button onClick={() => setScreenExpanded(false)} aria-label="Cerrar imagen ampliada">×</button></header><img src={productScreens[activeScreen].image} alt={`Vista ampliada de Smart Link Control — ${productScreens[activeScreen].kicker}`} /><nav><button onClick={() => changeScreen(activeScreen - 1, 'prev')} aria-label="Vista anterior">←</button><strong>{productScreens[activeScreen].label}</strong><button onClick={() => changeScreen(activeScreen + 1, 'next')} aria-label="Vista siguiente">→</button></nav></div></div>}
 
     <section className="brochure-section" id="brochure" ref={brochureRef}>
       <div className="brochure-signal" aria-hidden="true"><i /><span /></div>
