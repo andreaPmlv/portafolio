@@ -119,3 +119,16 @@ footer{min-height:900px;padding:120px 7vw 28px;position:relative;overflow:hidden
 }
 
 @media(prefers-reduced-motion:reduce){.screen-image,.screen-hotspots,.screen-lightbox{animation:none!important}.screen-progress i{transition:none}}
+
+/* Photorealistic oilfield hero */
+.hero-photo{position:absolute;inset:11% 0 7%;overflow:hidden;border:1px solid #ffffff70;border-radius:4px;background:#d9dfdc;box-shadow:0 35px 80px #1d302326;isolation:isolate}.hero-photo:before{content:'';position:absolute;z-index:2;inset:0;background:linear-gradient(90deg,#eef3eb26 0,transparent 30%),linear-gradient(0deg,#1320183d 0,transparent 32%);pointer-events:none}.hero-photo:after{content:'';position:absolute;z-index:3;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,#9be477,transparent);box-shadow:0 0 16px #68b93880;animation:photoScan 7s ease-in-out infinite}.hero-photo img{width:100%;height:100%;display:block;object-fit:cover;object-position:56% center;animation:photoDrift 14s ease-in-out infinite alternate;will-change:transform}.hero-visual .hud{z-index:5;background:#f8fbf5e8;border-color:#ffffffa8}.hero-visual .coordinate{z-index:5;padding:7px 5px;color:#edf4ee;border-radius:2px;background:#16221b73;text-shadow:0 1px 4px #0008;backdrop-filter:blur(5px)}
+@keyframes photoDrift{from{transform:scale(1.015) translate3d(-.3%,0,0)}to{transform:scale(1.055) translate3d(.45%,-.35%,0)}}@keyframes photoScan{0%,100%{top:0;opacity:0}12%{opacity:.7}48%{top:100%;opacity:.2}49%,99%{opacity:0}}
+
+@media(max-width:720px){
+  .hero-photo{inset:0 0 8px;border-radius:0;box-shadow:0 24px 55px #1d302322}
+  .hero-photo img{object-position:61% center}
+  .hero-photo:before{background:linear-gradient(0deg,#13201852 0,transparent 42%)}
+  .hero-visual .coordinate{right:9px;color:#fff}
+}
+
+@media(prefers-reduced-motion:reduce){.hero-photo img,.hero-photo:after{animation:none!important}}

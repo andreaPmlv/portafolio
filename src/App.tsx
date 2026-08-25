@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useRef, useState, type PointerEvent } from 'react'
+import { useEffect, useRef, useState, type PointerEvent } from 'react'
 import Lenis from 'lenis'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -9,10 +9,10 @@ import sensorsScreen from './smartlink-sensors.webp'
 import wellsScreen from './smartlink-wells.webp'
 import faultsScreen from './smartlink-faults.webp'
 import simulatorScreen from './smartlink-simulator.webp'
+import heroOilfield from './hero-oilfield.webp'
 import './App.css'
 
 gsap.registerPlugin(ScrollTrigger)
-const WellScene = lazy(() => import('./WellScene'))
 
 const features = [
   ['01', 'Supervisión SCADA', 'Smart Link recibe desde la RTU presión, temperatura, carga, caudal, vibración, desplazamiento, gas y RPM en tiempo real.'],
@@ -136,7 +136,7 @@ function App() {
     <section className="hero-section" id="top">
       <div className="hero-grid" aria-hidden="true" />
       <div className="hero-copy"><p className="eyebrow">SMART LINK CONTROL · LIFT ENERGY GROUP</p><h1>Control inteligente<br />para <em>pozos petroleros.</em></h1><p className="hero-intro">Sistema SCADA e IoT para monitorear la operación en tiempo real, interpretar cartas dinagráficas, detectar fallas, gestionar alarmas y controlar cada pozo desde una sola plataforma.</p><div className="hero-capabilities"><span>SCADA</span><span>DinAI</span><span>Gemelo digital</span></div><div className="hero-actions"><a className="button button-primary" href="#system">Conocer el sistema <span>↘</span></a><a className="hero-secondary" href="/smart-link-control-brochure.pdf" target="_blank" rel="noreferrer">Ver brochure ↗</a></div></div>
-      <div className="hero-visual"><Suspense fallback={<div className="model-loader"><span /><small>CARGANDO MODELO</small></div>}><WellScene /></Suspense><div className="hud hud-left"><small>NODE / LHG–004</small><b>188.6</b><span>PSI · PRESIÓN</span></div><div className="hud hud-right"><small>ESTADO OPERATIVO</small><b className="status-text">EN MARCHA</b><span>09:42:18 · LIVE</span></div><div className="coordinate">10°28' N / 66°54' W</div></div>
+      <div className="hero-visual"><div className="hero-photo"><img src={heroOilfield} alt="Balancín petrolero operando en campo conectado por Smart Link Control" fetchPriority="high" /></div><div className="hud hud-left"><small>NODE / LHG–004</small><b>188.6</b><span>PSI · PRESIÓN</span></div><div className="hud hud-right"><small>ESTADO OPERATIVO</small><b className="status-text">EN MARCHA</b><span>09:42:18 · LIVE</span></div><div className="coordinate">10°28' N / 66°54' W</div></div>
       <div className="scroll-note"><span /> SCROLL TO DESCEND</div>
     </section>
 
