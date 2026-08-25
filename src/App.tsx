@@ -134,9 +134,9 @@ function App() {
     </nav>
 
     <section className="hero-section" id="top">
+      <div className="hero-photo" aria-hidden="true"><img src={heroOilfield} alt="" fetchPriority="high" /></div>
       <div className="hero-grid" aria-hidden="true" />
       <div className="hero-copy"><p className="eyebrow">SMART LINK CONTROL · LIFT ENERGY GROUP</p><h1>Control inteligente<br />para <em>pozos petroleros.</em></h1><p className="hero-intro">Sistema SCADA e IoT para monitorear la operación en tiempo real, interpretar cartas dinagráficas, detectar fallas, gestionar alarmas y controlar cada pozo desde una sola plataforma.</p><div className="hero-capabilities"><span>SCADA</span><span>DinAI</span><span>Gemelo digital</span></div><div className="hero-actions"><a className="button button-primary" href="#system">Conocer el sistema <span>↘</span></a><a className="hero-secondary" href="/smart-link-control-brochure.pdf" target="_blank" rel="noreferrer">Ver brochure ↗</a></div></div>
-      <div className="hero-visual"><div className="hero-photo"><img src={heroOilfield} alt="Balancín petrolero operando en campo conectado por Smart Link Control" fetchPriority="high" /></div><div className="hud hud-left"><small>NODE / LHG–004</small><b>188.6</b><span>PSI · PRESIÓN</span></div><div className="hud hud-right"><small>ESTADO OPERATIVO</small><b className="status-text">EN MARCHA</b><span>09:42:18 · LIVE</span></div><div className="coordinate">10°28' N / 66°54' W</div></div>
       <div className="scroll-note"><span /> SCROLL TO DESCEND</div>
     </section>
 
