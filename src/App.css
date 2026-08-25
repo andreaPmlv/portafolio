@@ -55,3 +55,46 @@ footer{min-height:900px;padding:120px 7vw 28px;position:relative;overflow:hidden
 .model-loader{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:10px;color:#7a877e;font:400 7px 'DM Mono';letter-spacing:.13em}.model-loader span{width:7px;height:7px;border-radius:50%;background:var(--green);animation:loaderPulse 1s ease-in-out infinite}@keyframes loaderPulse{50%{transform:scale(1.8);box-shadow:0 0 15px #68b93888}}
 .nav-actions{display:flex;align-items:center;gap:9px}.nav-doc{padding:11px 14px;color:#536259;border:1px solid #d5ddd6;border-radius:30px;background:#ffffff80;font:500 9px/1 'DM Mono';transition:.25s}.nav-doc span{margin-left:8px;color:var(--green-dark)}.nav-doc:hover{color:var(--ink);border-color:#aabdac;background:#fff}
 @media(max-width:720px){.nav-actions{gap:6px}.nav-doc{width:38px;height:38px;padding:0;display:grid;place-items:center;font-size:0}.nav-doc:after{content:'PDF';font:500 7px 'DM Mono';color:var(--green-dark)}.nav-doc span{display:none}}
+
+/* Mobile 3D composition: keep the pumpjack readable without oversized telemetry cards */
+@media(max-width:720px){
+  .hero-visual{
+    height:390px;
+    margin:12px -22px 0;
+    overflow:hidden;
+  }
+  .hero-visual canvas{
+    touch-action:pan-y!important;
+  }
+  .hud{
+    width:112px;
+    padding:10px 11px;
+    transform:none;
+    border-radius:2px;
+    box-shadow:0 10px 28px #1c352412;
+    backdrop-filter:blur(9px);
+  }
+  .hud small,.hud span{
+    font-size:6px;
+    line-height:1.25;
+    letter-spacing:.045em;
+  }
+  .hud b{
+    margin:8px 0 3px;
+    font-size:17px;
+  }
+  .hud .status-text{
+    margin:9px 0 6px;
+    font-size:8px;
+  }
+  .hud-left{left:24px;top:18px}
+  .hud-right{right:22px;bottom:24px}
+  .coordinate{right:13px;top:36%;font-size:6px;opacity:.72}
+}
+
+@media(max-width:390px){
+  .hero-visual{height:355px}
+  .hud{width:102px;padding:9px}
+  .hud-left{left:16px}
+  .hud-right{right:16px;bottom:18px}
+}
