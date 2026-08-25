@@ -206,10 +206,10 @@ function App() {
           <a className="footer-button footer-button-outline" href="/smart-link-control-presentacion.pdf" target="_blank" rel="noreferrer"><span>Ver diapositivas<small>PDF · 13 PÁGINAS</small></span><ArrowUpRight /></a>
         </div>
       </div>
-      <div className="footer-status-grid" data-reveal>
-        <article><div><i /><small>01 / SCADA</small></div><strong>CONECTADO</strong><span>Telemetría de campo disponible</span></article>
-        <article><div><i /><small>02 / DinAI</small></div><strong>ANALIZANDO</strong><span>Cartas y firmas operativas</span></article>
-        <article><div><i /><small>03 / DIGITAL TWIN</small></div><strong>LISTO</strong><span>Simulación y ground truth</span></article>
+      <div className="footer-dynagraph" data-reveal>
+        <div><span>CARTA DINAGRÁFICA</span><small>SUPERFICIE + FONDO</small></div>
+        <svg viewBox="0 0 1000 190" preserveAspectRatio="none" aria-label="Comparación visual de carta dinagráfica de superficie y fondo"><path className="footer-curve-surface" d="M5 154C84 145 94 54 185 38s194-8 269 22 91 81 168 91 119-10 178-55 123-63 195-42"/><path className="footer-curve-ground" d="M5 164C83 153 104 70 191 53s188-3 260 27 97 75 173 84 117-8 177-48 124-57 194-40"/></svg>
+        <p><i /> Señal real recibida por Smart Link</p>
       </div>
       <div className="footer-directory">
         <div className="footer-brand"><img className="brand-logo" src={markLogo} alt="" /><span>SMART LINK <b>CONTROL</b><small>by Lift Energy Group</small></span></div>
@@ -219,8 +219,7 @@ function App() {
           <div><small>CONTACTO</small><a href="https://lift.energy/" target="_blank" rel="noreferrer">www.lift.energy <ArrowUpRight /></a><a href="tel:+584246061052">0424-6061052</a></div>
         </div>
       </div>
-      <div className="footer-signature" aria-hidden="true"><span>CONNECTED</span><i /></div>
-      <div className="footer-bottom"><span>© {new Date().getFullYear()} LIFT ENERGY GROUP</span><span>SCADA · DINAI · DIGITAL TWIN</span><span>OILFIELD INTELLIGENCE / CONNECTED</span></div>
+      <div className="footer-bottom"><span>© {new Date().getFullYear()} LIFT ENERGY GROUP</span><span>SCADA · DINAI · DIGITAL TWIN</span><span>MONITOREO / DIAGNÓSTICO / CONTROL</span></div>
     </footer>
   </main>
 }
