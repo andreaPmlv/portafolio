@@ -143,3 +143,24 @@ footer{min-height:900px;padding:120px 7vw 28px;position:relative;overflow:hidden
   .hero-section>.hero-photo:before{background:linear-gradient(180deg,#eef3ebf5 0,#eef3ebe8 50%,#eef3eb9e 72%,#13201935 100%),linear-gradient(90deg,#eef3ebd9 0,#eef3eb80 70%,transparent)}
   .hero-section>.hero-grid{opacity:.11}
 }
+
+/* Device-independent footer iconography and live system finale */
+.arrow-icon{width:16px;height:16px;display:block;flex:0 0 auto;fill:none;stroke:currentColor;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round}.round-link .arrow-icon{width:20px;height:20px}.footer-button>.arrow-icon{width:20px;height:20px}.footer-links a{display:flex;align-items:center;gap:5px}.footer-links a .arrow-icon{width:11px;height:11px;color:#78b959;transition:transform .25s}.footer-links a:hover .arrow-icon{transform:translate(2px,-2px)}.footer-orbit span{overflow:hidden}.footer-orbit span img{width:42px;height:42px;display:block;object-fit:contain;filter:drop-shadow(0 0 13px #68b93880)}
+.footer-status-grid{max-width:1180px;margin:88px 0 0;display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #2e3a33;position:relative;z-index:2;background:#101a15a8;backdrop-filter:blur(12px)}.footer-status-grid article{min-height:142px;padding:26px 28px;position:relative;overflow:hidden;border-right:1px solid #2e3a33}.footer-status-grid article:last-child{border-right:0}.footer-status-grid article:after{content:'';position:absolute;left:-35%;bottom:0;width:35%;height:1px;background:linear-gradient(90deg,transparent,var(--green));box-shadow:0 0 14px #68b938;animation:footerDataSweep 4.8s ease-in-out infinite}.footer-status-grid article:nth-child(2):after{animation-delay:1s}.footer-status-grid article:nth-child(3):after{animation-delay:2s}.footer-status-grid article div{display:flex;align-items:center;gap:10px}.footer-status-grid article div i{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 0 5px #68b93814,0 0 13px #68b938}.footer-status-grid small{color:#65746b;font:400 7px 'DM Mono';letter-spacing:.1em}.footer-status-grid strong,.footer-status-grid span{display:block}.footer-status-grid strong{margin-top:24px;color:#dce5df;font:500 13px 'DM Mono';letter-spacing:.08em}.footer-status-grid span{margin-top:9px;color:#718078;font-size:9px}.footer-directory{margin-top:95px}.footer-signature{margin-top:82px;padding:20px 0 13px;display:flex;align-items:center;gap:25px;position:relative;z-index:2;overflow:hidden;border-top:1px solid #2a352f;border-bottom:1px solid #2a352f}.footer-signature span{color:transparent;-webkit-text-stroke:1px #68b93869;font:500 clamp(62px,10.2vw,168px)/.88 Manrope;letter-spacing:-.07em}.footer-signature i{width:11px;height:11px;flex:0 0 auto;border-radius:50%;background:var(--green);box-shadow:0 0 0 12px #68b9380e,0 0 34px #68b938aa;animation:footerBolt 3s ease-in-out infinite}.footer-bottom{margin-top:25px}
+@keyframes footerDataSweep{0%,10%{left:-35%;opacity:0}25%,75%{opacity:1}90%,100%{left:100%;opacity:0}}
+
+@media(max-width:620px){
+  .footer-status-grid{margin-top:65px;grid-template-columns:repeat(3,1fr)}
+  .footer-status-grid article{min-height:102px;padding:17px 10px}
+  .footer-status-grid article div{gap:7px}
+  .footer-status-grid small{font-size:5px;line-height:1.35}
+  .footer-status-grid strong{margin-top:20px;font-size:7px;letter-spacing:.04em}
+  .footer-status-grid span{display:none}
+  .footer-directory{margin-top:78px}
+  .footer-signature{margin-top:65px;gap:15px;padding:15px 0 10px}
+  .footer-signature span{font-size:50px}
+  .footer-signature i{width:8px;height:8px;box-shadow:0 0 0 8px #68b9380e,0 0 24px #68b93888}
+  .footer-bottom{margin-top:22px}
+}
+
+@media(prefers-reduced-motion:reduce){.footer-status-grid article:after{animation:none}.footer-signature i{animation:none}}

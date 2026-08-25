@@ -42,6 +42,10 @@ const brochurePages = [
   ['SMART LINK CONTROL', 'Monitorear, comprender, anticipar y controlar.'],
 ]
 
+function ArrowUpRight() {
+  return <svg className="arrow-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" /></svg>
+}
+
 function App() {
   const [page, setPage] = useState(1)
   const [activeScreen, setActiveScreen] = useState(0)
@@ -190,26 +194,32 @@ function App() {
       </div>
     </section>
 
-    <section className="closing-section"><p data-reveal>Monitorear · detectar · simular · controlar</p><h2 data-reveal>El pozo ya está<br /><em>hablando.</em></h2><a className="round-link" href="https://smartlink.lift.energy/home" target="_blank" rel="noreferrer">Ver Smart Link <span>↗</span></a></section>
+    <section className="closing-section"><p data-reveal>Monitorear · detectar · simular · controlar</p><h2 data-reveal>El pozo ya está<br /><em>hablando.</em></h2><a className="round-link" href="https://smartlink.lift.energy/home" target="_blank" rel="noreferrer">Ver Smart Link <ArrowUpRight /></a></section>
     <footer id="contact">
-      <div className="footer-orbit" aria-hidden="true"><i /><i /><span>ϟ</span></div>
+      <div className="footer-orbit" aria-hidden="true"><i /><i /><span><img src={markLogo} alt="" /></span></div>
       <div className="footer-cta" data-reveal>
         <p className="eyebrow eyebrow-light">SMART LINK CONTROL / OPERACIÓN CONECTADA</p>
         <h2>Conecta el pozo.<br /><em>Controla la operación.</em></h2>
         <div className="footer-actions">
-          <a className="footer-button footer-button-green" href="https://smartlink.lift.energy/home" target="_blank" rel="noreferrer"><span>Entrar a Smart Link</span><b>↗</b></a>
-          <a className="footer-button footer-button-outline" href="/smart-link-control-brochure.pdf" target="_blank" rel="noreferrer"><span>Ver brochure<small>PDF · 7 PÁGINAS</small></span><b>↗</b></a>
-          <a className="footer-button footer-button-outline" href="/smart-link-control-presentacion.pdf" target="_blank" rel="noreferrer"><span>Ver diapositivas<small>PDF · 13 PÁGINAS</small></span><b>↗</b></a>
+          <a className="footer-button footer-button-green" href="https://smartlink.lift.energy/home" target="_blank" rel="noreferrer"><span>Entrar a Smart Link</span><ArrowUpRight /></a>
+          <a className="footer-button footer-button-outline" href="/smart-link-control-brochure.pdf" target="_blank" rel="noreferrer"><span>Ver brochure<small>PDF · 7 PÁGINAS</small></span><ArrowUpRight /></a>
+          <a className="footer-button footer-button-outline" href="/smart-link-control-presentacion.pdf" target="_blank" rel="noreferrer"><span>Ver diapositivas<small>PDF · 13 PÁGINAS</small></span><ArrowUpRight /></a>
         </div>
+      </div>
+      <div className="footer-status-grid" data-reveal>
+        <article><div><i /><small>01 / SCADA</small></div><strong>CONECTADO</strong><span>Telemetría de campo disponible</span></article>
+        <article><div><i /><small>02 / DinAI</small></div><strong>ANALIZANDO</strong><span>Cartas y firmas operativas</span></article>
+        <article><div><i /><small>03 / DIGITAL TWIN</small></div><strong>LISTO</strong><span>Simulación y ground truth</span></article>
       </div>
       <div className="footer-directory">
         <div className="footer-brand"><img className="brand-logo" src={markLogo} alt="" /><span>SMART LINK <b>CONTROL</b><small>by Lift Energy Group</small></span></div>
         <div className="footer-links">
           <div><small>EXPLORAR</small><a href="#system">Sistema</a><a href="#twin">Gemelo digital</a><a href="#platform">Plataforma</a></div>
-          <div><small>DOCUMENTACIÓN</small><a href="/smart-link-control-brochure.pdf" target="_blank" rel="noreferrer">Brochure PDF ↗</a><a href="/smart-link-control-presentacion.pdf" target="_blank" rel="noreferrer">Diapositivas PDF ↗</a><a href="#brochure">Capacidades</a></div>
-          <div><small>CONTACTO</small><a href="https://lift.energy/" target="_blank" rel="noreferrer">www.lift.energy ↗</a><a href="tel:+584246061052">0424-6061052</a></div>
+          <div><small>DOCUMENTACIÓN</small><a href="/smart-link-control-brochure.pdf" target="_blank" rel="noreferrer">Brochure PDF <ArrowUpRight /></a><a href="/smart-link-control-presentacion.pdf" target="_blank" rel="noreferrer">Diapositivas PDF <ArrowUpRight /></a><a href="#brochure">Capacidades</a></div>
+          <div><small>CONTACTO</small><a href="https://lift.energy/" target="_blank" rel="noreferrer">www.lift.energy <ArrowUpRight /></a><a href="tel:+584246061052">0424-6061052</a></div>
         </div>
       </div>
+      <div className="footer-signature" aria-hidden="true"><span>CONNECTED</span><i /></div>
       <div className="footer-bottom"><span>© {new Date().getFullYear()} LIFT ENERGY GROUP</span><span>SCADA · DINAI · DIGITAL TWIN</span><span>OILFIELD INTELLIGENCE / CONNECTED</span></div>
     </footer>
   </main>
